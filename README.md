@@ -4,7 +4,7 @@
 <br></br>
 <div align="center">
   
-  <img src="/Images/Screenshot 2024-08-30 235521.png" />
+  <img src="./Images/Demo-Page.png" />
 
   <h2 align="center">Jwellary - eCommerce website</h2>
 
@@ -18,7 +18,7 @@
 
 ### Demo Screeshots
 
-![Jwellary Desktop Demo](./Images/Screenshot%202024-08-30%20235521.png "Desktop Demo")
+![Jwellary Desktop Demo](./Images/Demo-Page.png "Desktop Demo")
 
 ### Prerequisites
 
