@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jewelry Store Payment</title>
+    <link rel="stylesheet" href="/CSS/responsive-style.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -145,6 +146,15 @@
         footer p {
             margin: 0;
         }
+        footer a{
+            color: white;
+        }
+        footer a:hover{
+            color: red;
+        }
+        footer a:active{
+            color: yellow;
+        }
     </style>
 </head>
 <body>
@@ -158,12 +168,12 @@
         <div class="form-group">
             <label for="country">Country</label>
             <select id="country">
-                <option value="">Select your country</option>
-                <option value="US">India</option>
-                <option value="US">United States</option>
-                <option value="CA">Canada</option>
-                <option value="UK">United Kingdom</option>
-                <option value="AU">Australia</option>
+                <option value="">Select your City</option>
+                <option value="US">Mumbai</option>
+                <option value="US">Lucknow</option>
+                <option value="CA">Hyderabad</option>
+                <option value="UK">Bangalore</option>
+                <option value="AU">Indore</option>
             </select>
             <div class="error" id="country-error"></div>
         </div>
@@ -215,6 +225,7 @@
 
     <footer>
         <p>&copy; 2024. CODE4IMRAN. All rights reserved.</p>
+        <a href="/index.html">HOME</a>
     </footer>
 
     <script>
@@ -282,7 +293,7 @@
                 }
 
                 if (isValid) {
-                    alert('Payment processed successfully!');
+                    window.open('successful.html');
                 }
             });
         });
