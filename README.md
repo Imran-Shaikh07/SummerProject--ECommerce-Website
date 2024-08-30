@@ -18,7 +18,7 @@
 
 ### Demo Screeshots
 
-![Jwellary Desktop Demo](./Images/Demo-Page.png "Desktop Demo")
+### ![Jwellary Desktop Demo](./Images/p1.png   "Desktop Demo")
 
 ### Prerequisites
 
