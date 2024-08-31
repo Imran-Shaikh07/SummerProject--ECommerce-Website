@@ -401,13 +401,14 @@ p {
     color: var(--white-color);
     margin-left: 100px;
 }
-.nav-item{
+
+.nav-tabs{
+    text-align: center;
+}
+
+.products .nav-tabs .nav-item {
     text-decoration: none;
     display: inline-block;
     margin-top: 30px;
     margin-left: 70px;
 }
-.nav-tabs{
-    text-align: center;
-}
-
