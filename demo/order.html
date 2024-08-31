@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order History & Tracking</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/CSS/responsive-style.css">
     <style>
         :root {
-    --primary-color: #ff553e;
-    --secondry-color: #333;
-    --white-color: #fff;
-    --black-color: #000;
-}
+            --primary-color: #ff553e;
+            --secondry-color: #333;
+            --white-color: #fff;
+            --black-color: #000;
+        }
+
         body {
             font-family: 'Roboto', sans-serif;
             background-color: var(--white-color);
@@ -21,7 +24,7 @@
         }
 
         header {
-            background-color:var(--secondry-color);
+            background-color: var(--secondry-color);
             color: white;
             padding: 15px 20px;
             display: flex;
@@ -52,7 +55,8 @@
             align-items: center;
         }
 
-        .filter-bar input, .filter-bar select {
+        .filter-bar input,
+        .filter-bar select {
             padding: 8px;
             border-radius: 5px;
             border: 1px solid #ddd;
@@ -156,87 +160,91 @@
         }
     </style>
 </head>
+
 <body>
 
-<header>
-    <div class="logo">
-        <h2><img src="/Images/logo.png" alt=""></h2>
-    </div>
-    <nav>
-        <a href="/index.html">Home</a>
-        <a href="#product">Product</a>
-        <a href="/Registration Form/registration.html">Logout</a>
-    </nav>
-</header>
+    <header>
+        <div class="logo">
+            <h2><img src="/Images/logo.png" alt=""></h2>
+        </div>
+        <nav>
+            <a href="/index.html">Home</a>
+            <a href="#product">Product</a>
+            <a href="/Registration Form/registration.html">Logout</a>
+        </nav>
+    </header>
 
-<div class="container">
-    <h1>Order History & Tracking</h1>
+    <div class="container">
+        <h1>Order History & Tracking</h1>
 
-    <div class="filter-bar">
-        <input type="text" placeholder="Search Orders...">
-        <select>
-            <option>All Orders</option>
-            <option>Delivered</option>
-            <option>Shipped</option>
-            <option>Processing</option>
-        </select>
-    </div>
+        <div class="filter-bar">
+            <input type="text" placeholder="Search Orders...">
+            <select>
+                <option>All Orders</option>
+                <option>Delivered</option>
+                <option>Shipped</option>
+                <option>Processing</option>
+            </select>
+        </div>
 
-    <div class="order-card">
-        <h3>Order #ORD96845</h3>
-        <p>Order Date: 2024-08-17 | Total Amount:₹ 2,750.00</p>
-        <p>Status: <span class="order-status">Shipped</span></p>
-        <button onclick="toggleDetails(this)">View Details</button>
+        <div class="order-card">
+            <h3>Order #ORD96845</h3>
+            <p>Order Date: 2024-08-17 | Total Amount:₹ 2,750.00</p>
+            <p>Status: <span class="order-status">Shipped</span></p>
+            <button onclick="toggleDetails(this)">View Details</button>
 
-        <div class="order-details">
-            <!-- Product List -->
-            <h4>Products:</h4>
-            <ul>
-                <li><img src="/Images/Product-img/Bracelet-3.jpg" alt="Product Image" style="width: 50px; height: 50px;"> Product Name 1 - Quantity: 2 -₹ 750.00</li>
-                <li><img src="/Images/Product-img/necklace-5.jpg" alt="Product Image" style="width: 50px; height: 50px;"> Product Name 2 - Quantity: 1 -₹ 1,250.00</li>
-            </ul>
+            <div class="order-details">
+                <!-- Product List -->
+                <h4>Products:</h4>
+                <ul>
+                    <li><img src="/Images/Product-img/Bracelet-3.jpg" alt="Product Image"
+                            style="width: 50px; height: 50px;"> Product Name 1 - Quantity: 2 -₹ 750.00</li>
+                    <li><img src="/Images/Product-img/necklace-5.jpg" alt="Product Image"
+                            style="width: 50px; height: 50px;"> Product Name 2 - Quantity: 1 -₹ 1,250.00</li>
+                </ul>
 
-            <!-- Shipping Information -->
-            <h4>Shipping Information:</h4>
-            <p>Address: VJIT, Ajij Nagar,Hyderabad - 500075</p>
-            <p>Tracking Number: <a href="#">8234553890</a></p>
+                <!-- Shipping Information -->
+                <h4>Shipping Information:</h4>
+                <p>Address: VJIT, Ajij Nagar,Hyderabad - 500075</p>
+                <p>Tracking Number: <a href="#">8234553890</a></p>
 
-            <!-- Tracking Timeline -->
-            <div class="tracking-timeline">
-                <div>
-                    <span class="timeline-icon"></span>
-                    <p>Order Placed</p>
-                </div>
-                <div>
-                    <span class="timeline-icon"></span>
-                    <p>Shipped</p>
-                </div>
-                <div>
-                    <span class="timeline-icon"></span>
-                    <p>Out for Delivery</p>
-                </div>
-                <div>
-                    <span class="timeline-icon"></span>
-                    <p>Delivered</p>
+                <!-- Tracking Timeline -->
+                <div class="tracking-timeline">
+                    <div>
+                        <span class="timeline-icon"></span>
+                        <p>Order Placed</p>
+                    </div>
+                    <div>
+                        <span class="timeline-icon"></span>
+                        <p>Shipped</p>
+                    </div>
+                    <div>
+                        <span class="timeline-icon"></span>
+                        <p>Out for Delivery</p>
+                    </div>
+                    <div>
+                        <span class="timeline-icon"></span>
+                        <p>Delivered</p>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Additional order cards -->
+
     </div>
 
-    <!-- Additional order cards -->
+    <footer>
+        <p>Customer Support | FAQ | Return Policy</p>
+    </footer>
 
-</div>
-
-<footer>
-    <p>Customer Support | FAQ | Return Policy</p>
-</footer>
-
-<script>
-    function toggleDetails(button) {
-        const details = button.nextElementSibling;
-        details.style.display = details.style.display === 'block' ? 'none' : 'block';
-    }
-</script>
+    <script>
+        function toggleDetails(button) {
+            const details = button.nextElementSibling;
+            details.style.display = details.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
 
 </body>
+
 </html>
