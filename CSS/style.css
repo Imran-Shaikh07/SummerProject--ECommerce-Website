@@ -324,6 +324,12 @@ p {
     line-height: 34px;
     text-transform: uppercase;
 }
+.products .nav-tabs .nav-link:hover{
+    color: var(--primary-color);
+}
+.products .nav-tabs .nav-link:active{
+    color:#f4d632;
+}
 
 .products .products-info .cat-parent,
 .products .products-info .wishlist i {
@@ -391,3 +397,17 @@ p {
 .footer .footer-logo {
     color: var(--white-color);
 }
+.container form,label {
+    color: var(--white-color);
+    margin-left: 100px;
+}
+.nav-item{
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 30px;
+    margin-left: 70px;
+}
+.nav-tabs{
+    text-align: center;
+}
+
