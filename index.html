@@ -19,9 +19,9 @@
     <header>
         <div class="top-header">
             <div class="container d-flex justify-content-between align-items-center py-3">
-                <span>Free Shipping for orders over </span>
+                <span>Free Shipping for orders over 10k </span>
                 <span>Call: 897-6605-190</span>
-                
+
             </div>
 
         </div>
@@ -73,21 +73,26 @@
                     <form class="d-flex">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
-                        
-                    <!-- Example split danger button -->
-<div class="btn-group">
-    <button type="button" class="btn btn-danger">User<i class="far fa-user"></i></button>
-    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-      <span class="visually-hidden">Toggle Dropdown</span>
-    </button>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="/registration.html">Sign in  <i class="far fa-user"></i></a></li>
-      <li><a class="dropdown-item" href="/registration.html">Registration  <i class="far fa-address-card"></i></a></li>
-      <li><a class="dropdown-item" href="/order.html">Orders <i class="far fa-gem"></i></a></li>
-      <li><a class="dropdown-item" href="/cart.html">Cart <i class="far fa-bookmark"></i></a></li>
-      
-    </ul>
-  </div>
+
+                        <!-- Example split danger button -->
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-danger">User<i class="far fa-user"></i></button>
+                            <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="visually-hidden">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/registration.html">Sign in <i
+                                            class="far fa-user"></i></a></li>
+                                <li><a class="dropdown-item" href="/registration.html">Registration <i
+                                            class="far fa-address-card"></i></a></li>
+                                <li><a class="dropdown-item" href="/order.html">Orders <i class="far fa-gem"></i></a>
+                                </li>
+                                <li><a class="dropdown-item" href="/cart.html">Cart <i class="far fa-bookmark"></i></a>
+                                </li>
+
+                            </ul>
+                        </div>
                 </div>
             </div>
         </nav>
@@ -209,22 +214,23 @@
                 <div class="col-12">
                     <br>
                     <form id="filter-form" class="filter-form">
-                        <label for="category">Category:</label>
-                        <input type="text" id="category" name="category">
-
-                        <label for="minPrice">Min Price:</label>
-                        <input type="number" id="minPrice" name="minPrice" step="0.01">
-
-                        <label for="maxPrice">Max Price:</label>
-                        <input type="number" id="maxPrice" name="maxPrice" step="0.01">
-
-                        <label for="sort">Price:</label>
-                        <select id="sort" name="sort">
-                            <option value="">None</option>
-                            <option value="asc">Low-To-High</option>
-                            <option value="desc">High-To-Low</option>
+                        <label for="sort">Sort by:</label>
+                        <select id="sort" onchange="sortProducts()">
+                            <option value="default">Default</option>
+                            <option value="price-low-to-high">Price: Low to High</option>
+                            <option value="price-high-to-low">Price: High to Low</option>
+                            <option value="rating">Rating</option>
                         </select>
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+
+                        <label for="filter">Filter by Category:</label>
+                        <select id="filter" onchange="filterProducts()">
+                            <option value="all">All</option>
+                            <option value="ring">Ring</option>
+                            <option value="necklace">Necklace</option>
+                            <option value="bracelet">Bracelet</option>
+                            <option value="earing">Earing</option>
+                        </select>
+                        
                     </form>
                     <br>
                     <ul class="nav-tabs mb-3" id="myTab" role="tablist">
@@ -243,14 +249,16 @@
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="necklace-tab" data-bs-toggle="tab" data-bs-target="#necklace"
-                                type="button" role="tab" aria-controls="necklace" aria-selected="false">Necklaces</button>
+                                type="button" role="tab" aria-controls="necklace"
+                                aria-selected="false">Necklaces</button>
                         </li>
                     </ul>
-                    <div class="tab-content" id="myTabContent">
+                    <div class="tab-content" id="tab-content">
                         <div class="tab-pane fade show active" id="jwellery" role="tabpanel"
                             aria-labelledby="Jwellery-tab">
                             <div class="row">
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="1" data-price="775">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-category="bracelet" data-id="1" data-name="Titanium ring in grd palladium finish
+                                metal Original..." data-price="775">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/Bracelet-1.jpg" class="img-fluid" alt="">
@@ -280,17 +288,18 @@
                                                 <p>Rating: 4.7</p>
 
                                                 <div class="basket">
-                                                    <a href="#"><button type="button"
-                                                            class="btn btn-primary add-to-cart">Add
+                                                    <a href="#"><button class="btn btn-primary add-to-cart">Add to
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="1">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="1">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="2" data-price="960.56">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-category="bracelet" data-name="1pc Fashionable Elegant Luxury Original
+                                Stainless Steel..." data-id="2" data-price="960">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/Bracelet-2.jpg" class="img-fluid" alt="">
@@ -308,7 +317,7 @@
                                                 Stainless Steel...</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 960.56</span></ins>
+                                            <ins><span class="money text-white">₹ 960</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -322,15 +331,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="2">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="3" data-price="839,910">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="3" data-category="bracelet" data-name="5 Carat, Unique Diamond Tennis Bracelet,
+                                Natural diamond..." data-price="839">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/Bracelet-3.jpg" class="img-fluid" alt="">
@@ -349,7 +360,7 @@
                                             </a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 839,910</span></ins>
+                                            <ins><span class="money text-white">₹ 839</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -363,15 +374,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="3">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="3">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="4" data-price="1,424.16">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="4" data-category="bracelet"  data-name="Fancy Diamond Bracelet Ladies 1.58ct tw -
+                                14kt Gold" data-price="1,424">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/Bracelet-4.jpg " class="img-fluid" alt="">
@@ -389,7 +402,7 @@
                                                 14kt Gold</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 1,424.16</span></ins>
+                                            <ins><span class="money text-white">₹ 1,424</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -403,8 +416,9 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="4">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
@@ -416,7 +430,8 @@
 
                             </div>
                             <div class="row">
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="1" data-price="775">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="5" data-category="bracelet" data-name="Titanium ring in grd palladium finish
+                                metal Original..." data-price="775">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/bracelet-5.jpg" class="img-fluid" alt="">
@@ -449,14 +464,16 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="1">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="5">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="2" data-price="960.56">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="6" data-category="bracelet"  data-name="1pc Fashionable Elegant Luxury Original
+                                Stainless Steel..." data-price="960.56">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/bracelet-6.jpg" class="img-fluid" alt="">
@@ -488,15 +505,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="6">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="3" data-price="839,910">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="7" data-category="bracelet"  data-name=""
+                                    data-price="839,910">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/bracelet-7.jpg" class="img-fluid" alt="">
@@ -529,15 +548,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="3">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="7">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="4" data-price="1,424.16">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="8" data-category="bracelet" data-name=""
+                                    data-price="1,424.16">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/bracelet-8.jpg" class="img-fluid" alt="">
@@ -569,8 +590,9 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="8">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
@@ -582,7 +604,7 @@
 
                             </div>
                             <div class="row">
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="1" data-price="775">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="9" data-category="bracelet" data-name="" data-price="775">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/bracelet-9.jpg" class="img-fluid" alt="">
@@ -615,14 +637,16 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="1">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="9">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="2" data-price="960.56">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="10" data-category="bracelet" data-name=""
+                                    data-price="960.56">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/bracelet-10.jpg" class="img-fluid" alt="">
@@ -654,15 +678,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="10">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="3" data-price="839,910">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="11" data-category="bracelet" data-name=""
+                                    data-price="839,910">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/bracelet-11.jpg" class="img-fluid" alt="">
@@ -695,15 +721,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="3">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="11">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="4" data-price="1,424.16">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="12" data-category="bracelet" data-name=""
+                                    data-price="1,424.16">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/bracelet-12.jpg " class="img-fluid" alt="">
@@ -735,8 +763,9 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="12">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
@@ -748,7 +777,7 @@
 
                             </div>
                             <div class="row">
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="1" data-price="775">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="13" data-category="bracelet" ="" data-price="775">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/bracelet-13.jpg" class="img-fluid" alt="">
@@ -781,14 +810,16 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="1">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="13">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="2" data-price="960.56">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="14" data-name=""
+                                    data-price="960.56">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/bracelet-14.jpg" class="img-fluid" alt="">
@@ -820,15 +851,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="14">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="3" data-price="839,910">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="15" data-category="bracelet" data-name=""
+                                    data-price="839,910">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/bracelet-15.jpg" class="img-fluid" alt="">
@@ -861,15 +894,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="3">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="15">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="4" data-price="1,424.16">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="16" data-category="bracelet" data-name=""
+                                    data-price="1,424.16">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/bracelet-16.jpg" class="img-fluid" alt="">
@@ -901,8 +936,9 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="16">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
@@ -914,7 +950,7 @@
 
                             </div>
                             <div class="row">
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="1" data-price="775">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="17" data-category="bracelet" data-name="" data-price="775">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/bracelet-17.jpg" class="img-fluid" alt="">
@@ -947,14 +983,16 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="1">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="17">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="2" data-price="960.56">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="18" data-category="bracelet" data-name=""
+                                    data-price="960.56">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/bracelet-18.jpg" class="img-fluid" alt="">
@@ -986,15 +1024,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="18">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="3" data-price="839,910">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="19" data-category="bracelet" data-name=""
+                                    data-price="839,910">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/bracelet-19.jpg" class="img-fluid" alt="">
@@ -1027,15 +1067,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="3">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="19">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="4" data-price="1,424.16">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="20" data-category="bracelet" data-name=""
+                                    data-price="1,424.16">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/bracelet-20.jpg " class="img-fluid" alt="">
@@ -1067,8 +1109,9 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="20">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
@@ -1079,28 +1122,22 @@
 
 
                             </div>
-                            <div class="review-form" id="review-form">
-                                <hr>
-                                <h2>Submit Your Review</h2>
-                                <form id="reviewForm">
-                                    <input type="hidden" id="productId" name="productId" value="">
-
-                                    <label for="reviewText">Review:</label>
-                                    <textarea id="reviewText" name="reviewText" rows="5" required></textarea>
-
-                                    <label for="rating">Rating (1-5):</label>
-                                    <input type="number" id="rating" name="rating" min="1" max="5" required>
-
-                                    <button class="btn btn-outline-success" type="submit">Submit Review</button>
-                                    <button class="btn btn-outline-success" type="button"
-                                        id="cancelReview">Cancel</button>
-                                </form>
+                            <!-- Review Popup Modal -->
+                            <div class="review-overlay"></div>
+                            <div class="review-popup">
+                                <h4>Write a Review</h4>
+                                <textarea id="review-text" class="form-control" rows="4"
+                                    placeholder="Write your review here..."></textarea>
+                                <br>
+                                <button class="btn btn-success" id="submit-review">Submit Review</button>
+                                <button class="btn btn-secondary" id="close-review">Cancel</button>
                             </div>
                         </div>
 
                         <div class="tab-pane fade" id="ring" role="tabpanel" aria-labelledby="ring-tab">
                             <div class="row">
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="5" data-price="536">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="21" data-category="ring" data-name="Sterling Silver
+                                Sparkling Ring" data-price="436">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/r-1.jpg" class="img-fluid" alt="">
@@ -1114,12 +1151,12 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Light Luxury 925 Sterling Silver
-                                                Sparkling
-                                                Moissanite Diamond Cut Engagement Ring Fine Jewelry</a>
+                                            <a href="#" style="color: yellow;">Sterling Silver
+                                                Sparkling Ring
+                                            </a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 536</span></ins>
+                                            <ins><span class="money text-white">₹ 436</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -1133,15 +1170,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="21">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="6" data-price="896">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="22" data-category="ring" 
+                                    data-name="905 Silver Jewelry Ring" data-price="296">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/r-2.jpg" class="img-fluid" alt="">
@@ -1155,12 +1194,10 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color:yellow;">925 Silver Jewelry Ring for Women Sapphire
-                                                Zircon Gemstone
-                                                Gold Color Finger Rings Wedding Engagement Party</a>
+                                            <a href="#" style="color:yellow;">905 Silver Jewelry Ring </a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 896</span></ins>
+                                            <ins><span class="money text-white">₹ 296</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -1173,15 +1210,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="22">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="7" data-price="569">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="23"  data-category="ring" data-name="Silver Rings"
+                                    data-price="269">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/r-3.jpg" class="img-fluid" alt="">
@@ -1195,11 +1234,10 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color:yellow;">Silver Rings Cubic Zirconia Trendy
-                                                Jewelry and Gold Color Finger Rings Wedding Engagement Party</a>
+                                            <a href="#" style="color:yellow;">Silver Rings</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 569</span></ins>
+                                            <ins><span class="money text-white">₹ 269</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -1213,15 +1251,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="23">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="8" data-price="2,839">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="24" data-category="ring" data-name="Ring Fine Jewelry"
+                                    data-price="439">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/r-4.jpg" class="img-fluid" alt="">
@@ -1235,13 +1275,11 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">HanYu Jewelry 925 Sterling Silver Women
-                                                Engagement
-                                                Rings 1ct 2ct 3ct D Color Moissanite Diamond Rings
+                                            <a href="#" style="color: yellow;">Silver Diamond Ring
                                             </a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 2,839</span></ins>
+                                            <ins><span class="money text-white">₹ 439</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -1255,8 +1293,9 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="24">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
@@ -1265,7 +1304,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="5" data-price="536">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="25" data-category="ring" data-name="Ring Fine Jewelry"
+                                    data-price="536">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/ring-5.jpg" class="img-fluid" alt="">
@@ -1298,15 +1338,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="25">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="6" data-price="896">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="26" data-category="ring" 
+                                    data-name="Gold Color Finger Rings" data-price="896">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/ring-6.jpg" class="img-fluid" alt="">
@@ -1338,15 +1380,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="26">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="7" data-price="569">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="27" data-category="ring" 
+                                    data-name="Cubic Engagement Party" data-price="469">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/ring-7.jpg" class="img-fluid" alt="">
@@ -1360,11 +1404,10 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color:yellow;">Silver Rings Cubic Zirconia Trendy
-                                                Jewelry and Gold Color Finger Rings Wedding Engagement Party</a>
+                                            <a href="#" style="color:yellow;">Cubic Engagement Party</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 569</span></ins>
+                                            <ins><span class="money text-white">₹ 469</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -1378,15 +1421,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="27">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="8" data-price="2,839">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="28" data-category="ring"  data-name="Party Rings"
+                                    data-price="462">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/ring-8.jpg" class="img-fluid" alt="">
@@ -1400,13 +1445,11 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">HanYu Jewelry 925 Sterling Silver Women
-                                                Engagement
-                                                Rings 1ct 2ct 3ct D Color Moissanite Diamond Rings
+                                            <a href="#" style="color: yellow;">Party Rings
                                             </a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 2,839</span></ins>
+                                            <ins><span class="money text-white">₹ 462</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -1420,8 +1463,9 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="28">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
@@ -1430,7 +1474,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="5" data-price="536">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="29"  data-category="ring" data-name="Fashion Ring"
+                                    data-price="436">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/ring-9.jpg" class="img-fluid" alt="">
@@ -1444,12 +1489,10 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Light Luxury 925 Sterling Silver
-                                                Sparkling
-                                                Moissanite Diamond Cut Engagement Ring Fine Jewelry</a>
+                                            <a href="#" style="color: yellow;">Fashion Ring</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 536</span></ins>
+                                            <ins><span class="money text-white">₹ 436</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -1463,15 +1506,18 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="29">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="6" data-price="896">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="30" data-category="ring" 
+                                    data-name="Women's Brocade Simple Personality X-shaped Two-tone Zircon Rings"
+                                    data-price="296">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/ring-10.jpg" class="img-fluid" alt="">
@@ -1485,12 +1531,11 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color:yellow;">925 Silver Jewelry Ring for Women Sapphire
-                                                Zircon Gemstone
-                                                Gold Color Finger Rings Wedding Engagement Party</a>
+                                            <a href="#" style="color:yellow;">Women's Brocade Simple Personality
+                                                X-shaped Two-tone Zircon Rings</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 896</span></ins>
+                                            <ins><span class="money text-white">₹ 296</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -1503,15 +1548,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="30">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="7" data-price="569">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="31" data-category="ring" 
+                                    data-name="Silver Rings Cubic and Gold Color Finger Rings" data-price="469">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/ring-11.jpg" class="img-fluid" alt="">
@@ -1525,11 +1572,11 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color:yellow;">Silver Rings Cubic Zirconia Trendy
-                                                Jewelry and Gold Color Finger Rings Wedding Engagement Party</a>
+                                            <a href="#" style="color:yellow;">Silver Rings Cubic and Gold Color Finger
+                                                Rings</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 569</span></ins>
+                                            <ins><span class="money text-white">₹ 469</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -1543,15 +1590,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="31">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="8" data-price="2,839">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="32"  data-category="ring" data-name="Diamond Rings"
+                                    data-price="339">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/ring-12.jpg" class="img-fluid" alt="">
@@ -1565,13 +1614,11 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">HanYu Jewelry 925 Sterling Silver Women
-                                                Engagement
-                                                Rings 1ct 2ct 3ct D Color Moissanite Diamond Rings
+                                            <a href="#" style="color: yellow;"> Diamond Rings
                                             </a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 2,839</span></ins>
+                                            <ins><span class="money text-white">₹ 339</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -1585,8 +1632,9 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="32">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
@@ -1595,7 +1643,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="5" data-price="536">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="33" data-category="ring" data-name="Luxury 925 Sterling Silver
+                                Sparkling" data-price="536">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/ring-13.jpg" class="img-fluid" alt="">
@@ -1609,9 +1658,9 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Light Luxury 925 Sterling Silver
+                                            <a href="#" style="color: yellow;">Luxury 925 Sterling Silver
                                                 Sparkling
-                                                Moissanite Diamond Cut Engagement Ring Fine Jewelry</a>
+                                            </a>
                                         </h4>
                                         <div class="product-price">
                                             <ins><span class="money text-white">₹ 536</span></ins>
@@ -1628,15 +1677,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="33">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="6" data-price="896">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="34" data-category="ring"  data-name="925 Silver Jewelry Ring for Women Sapphire
+                                Zircon Gemstone" data-price="896">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/ring-14.jpg" class="img-fluid" alt="">
@@ -1652,7 +1703,7 @@
                                         <h4 class="product-title">
                                             <a href="#" style="color:yellow;">925 Silver Jewelry Ring for Women Sapphire
                                                 Zircon Gemstone
-                                                Gold Color Finger Rings Wedding Engagement Party</a>
+                                            </a>
                                         </h4>
                                         <div class="product-price">
                                             <ins><span class="money text-white">₹ 896</span></ins>
@@ -1668,15 +1719,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="34">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="7" data-price="569">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="35" data-category="ring" 
+                                    data-name="Gold Color Finger Rings Wedding Engagement Party" data-price="369">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/ring-15.jpg" class="img-fluid" alt="">
@@ -1690,11 +1743,11 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color:yellow;">Silver Rings Cubic Zirconia Trendy
-                                                Jewelry and Gold Color Finger Rings Wedding Engagement Party</a>
+                                            <a href="#" style="color:yellow;">Gold Color Finger Rings Wedding Engagement
+                                                Party</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 569</span></ins>
+                                            <ins><span class="money text-white">₹ 369</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -1708,15 +1761,18 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="35">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="8" data-price="2,839">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="36" data-category="ring" 
+                                    data-name="Women's Brocade Simple Personality X-shaped Two-tone Zircon Rings"
+                                    data-price="150">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/ring-16.jpg" class="img-fluid" alt="">
@@ -1730,13 +1786,12 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">HanYu Jewelry 925 Sterling Silver Women
-                                                Engagement
-                                                Rings 1ct 2ct 3ct D Color Moissanite Diamond Rings
+                                            <a href="#" style="color: yellow;">Women's Brocade Simple Personality
+                                                X-shaped Two-tone Zircon Rings
                                             </a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 2,839</span></ins>
+                                            <ins><span class="money text-white">₹ 150</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -1750,8 +1805,9 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="36">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
@@ -1759,8 +1815,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="5" data-price="536">
+                            <div class="row"> 
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="37" data-category="ring" 
+                                    data-name="Moissanite Diamond Cut Engagement Ring" data-price="536">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/ring-17.jpg" class="img-fluid" alt="">
@@ -1793,15 +1850,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="37">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="6" data-price="896">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="38"  data-category="ring" data-name="Silver Jewelry Ring"
+                                    data-price="896">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/ring-18.jpg" class="img-fluid" alt="">
@@ -1833,15 +1892,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="38">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="7" data-price="569">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="39" data-category="ring" 
+                                    data-name="Wedding Engagement Party" data-price="569">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/ring-19.jpg" class="img-fluid" alt="">
@@ -1873,15 +1934,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="39">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="8" data-price="2,839">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="40" data-category="ring" data-name="Diamond Rings"
+                                    data-price="2,839">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/ring-20.jpg" class="img-fluid" alt="">
@@ -1915,8 +1978,9 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="40">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
@@ -1928,7 +1992,8 @@
 
                         <div class="tab-pane fade" id="earings" role="tabpanel" aria-labelledby="earings-tab">
                             <div class="row">
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="9" data-price="850">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="41" data-category="earing"  data-name="Zirconia Earrings"
+                                    data-price="400">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/Earing-1.jpg" class="img-fluid" alt="">
@@ -1942,12 +2007,11 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Silver & Rose Gold Chaandbalis/ CZ
-                                                Chaandbali/ Zirconia Earrings/
-                                                Indian Earrings/ Pakistani Earrings</a>
+                                            <a href="#" style="color: yellow;">Zirconia Earrings
+                                            </a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹850.00</span></ins>
+                                            <ins><span class="money text-white">₹400.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -1961,15 +2025,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="41">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="10" data-price="950">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="42" data-category="earing" 
+                                    data-name="14k White Gold and Pear Diamond" data-price="650">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/Earing-2.webp" class="img-fluid" alt="">
@@ -1983,12 +2049,11 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">SI1/H Pear Diamond Chandelier/Dangle
-                                                Wedding Earrings
+                                            <a href="#" style="color: yellow;">
                                                 14k White Gold and Pear Diamond</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 950.00</span></ins>
+                                            <ins><span class="money text-white">₹ 650.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -2002,15 +2067,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="42">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="11" data-price="900">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="43" data-category="earing" 
+                                    data-name="Diamond Classic Earrings" data-price="300">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/Earing-3.webp" class="img-fluid" alt="">
@@ -2024,11 +2091,11 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Simulated Diamond Classic Earrings</a>
+                                            <a href="#" style="color: yellow;">Diamond Classic Earrings</a>
                                         </h4>
                                         <br><br>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 900.00</span></ins>
+                                            <ins><span class="money text-white">₹ 300.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -2042,15 +2109,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="43">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="12" data-price="650">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="44" data-category="earing"  data-name="Bridesmaid Earrings"
+                                    data-price="250">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/Earing-4.jpg" class="img-fluid" alt="">
@@ -2064,12 +2133,11 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Wedding Earrings Zirconia Earrings Rose
-                                                gold Earrings Bridal Earrings Wedding Jewelry
+                                            <a href="#" style="color: yellow;">
                                                 Bridesmaid Earrings</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 650.00</span></ins>
+                                            <ins><span class="money text-white">₹ 250.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -2083,8 +2151,9 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="44">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
@@ -2093,7 +2162,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="9" data-price="850">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="45" data-category="earing"  data-name="Party Jhumka"
+                                    data-price="350">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/earing-5.jpg" class="img-fluid" alt="">
@@ -2107,12 +2177,10 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Silver & Rose Gold Chaandbalis/ CZ
-                                                Chaandbali/ Zirconia Earrings/
-                                                Indian Earrings/ Pakistani Earrings</a>
+                                            <a href="#" style="color: yellow;">Party Jhumka</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹850.00</span></ins>
+                                            <ins><span class="money text-white">₹ 350.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -2126,15 +2194,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="45">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="10" data-price="950">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="46" data-category="earing" 
+                                    data-name="Diamond Jewelry & Luxury Watches | Harry Winston" data-price="550">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/earing-6.jpg" class="img-fluid" alt="">
@@ -2148,12 +2218,11 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">SI1/H Pear Diamond Chandelier/Dangle
-                                                Wedding Earrings
-                                                14k White Gold and Pear Diamond</a>
+                                            <a href="#" style="color: yellow;">Diamond Jewelry & Luxury Watches | Harry
+                                                Winston</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 950.00</span></ins>
+                                            <ins><span class="money text-white">₹ 550.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -2167,15 +2236,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="46">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="11" data-price="900">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="47" data-category="earing" 
+                                    data-name="Jhumka Earing for party" data-price="300">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/earing-7.jpg" class="img-fluid" alt="">
@@ -2189,11 +2260,11 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Simulated Diamond Classic Earrings</a>
+                                            <a href="#" style="color: yellow;">Jhumka Earing for party</a>
                                         </h4>
                                         <br><br>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 900.00</span></ins>
+                                            <ins><span class="money text-white">₹ 300.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -2207,15 +2278,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="47">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="12" data-price="650">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="48" data-category="earing" 
+                                    data-name="GRAFF HIGH JEWELLERY" data-price="450">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/earing-8.jpg" class="img-fluid" alt="">
@@ -2229,12 +2302,10 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Wedding Earrings Zirconia Earrings Rose
-                                                gold Earrings Bridal Earrings Wedding Jewelry
-                                                Bridesmaid Earrings</a>
+                                            <a href="#" style="color: yellow;">GRAFF HIGH JEWELLERY</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 650.00</span></ins>
+                                            <ins><span class="money text-white">₹ 450.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -2248,8 +2319,9 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="48">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
@@ -2258,7 +2330,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="9" data-price="850">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="49" data-category="earing" 
+                                    data-name="Bridal Crystal Earrings" data-price="350">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/earing-9.jpg" class="img-fluid" alt="">
@@ -2272,12 +2345,10 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Silver & Rose Gold Chaandbalis/ CZ
-                                                Chaandbali/ Zirconia Earrings/
-                                                Indian Earrings/ Pakistani Earrings</a>
+                                            <a href="#" style="color: yellow;">Bridal Crystal Earrings</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹850.00</span></ins>
+                                            <ins><span class="money text-white">₹350.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -2291,15 +2362,18 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="49">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="10" data-price="950">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="50" data-category="earing" 
+                                    data-name="Bridal Crystal Earrings, Floral Cubic Zirconia Earrings"
+                                    data-price="450">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/earing-10.jpg" class="img-fluid" alt="">
@@ -2313,12 +2387,12 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">SI1/H Pear Diamond Chandelier/Dangle
-                                                Wedding Earrings
-                                                14k White Gold and Pear Diamond</a>
+                                            <a href="#" style="color: yellow;">Bridal Crystal Earrings, Floral Cubic
+                                                Zirconia Earrings, Bridesmaid Gift, Birthday Gift E194 - Etsy Australia
+                                            </a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 950.00</span></ins>
+                                            <ins><span class="money text-white">₹ 450.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -2332,15 +2406,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="50">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="11" data-price="900">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="51" data-category="earing"  data-name="Handmade Earing"
+                                    data-price="400">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/earing-11.jpg" class="img-fluid" alt="">
@@ -2354,11 +2430,11 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Simulated Diamond Classic Earrings</a>
+                                            <a href="#" style="color: yellow;">Handmade Earing</a>
                                         </h4>
                                         <br><br>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 900.00</span></ins>
+                                            <ins><span class="money text-white">₹ 400.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -2367,20 +2443,23 @@
                                                 <i class="far fa-star"></i>
                                                 <i class="far fa-star"></i>
                                                 <i class="far fa-star"></i>
-                                                <p>Rating: 5.0</p>
+                                                <p>Rating: 4.7</p>
                                                 <div class="basket">
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="51">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="12" data-price="650">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="52" data-category="earing" 
+                                    data-name="Dazzling Elegance: Perfect Earrings for Your Wedding Day"
+                                    data-price="650">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/earing-12.jpg" class="img-fluid" alt="">
@@ -2394,9 +2473,8 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Wedding Earrings Zirconia Earrings Rose
-                                                gold Earrings Bridal Earrings Wedding Jewelry
-                                                Bridesmaid Earrings</a>
+                                            <a href="#" style="color: yellow;">Dazzling Elegance: Perfect Earrings for
+                                                Your Wedding Day</a>
                                         </h4>
                                         <div class="product-price">
                                             <ins><span class="money text-white">₹ 650.00</span></ins>
@@ -2413,8 +2491,9 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="52">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
@@ -2423,7 +2502,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="9" data-price="850">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="53" data-category="earing" 
+                                    data-name="Prom jewelry - Diamond earrings" data-price="250">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/earing-13.jpg" class="img-fluid" alt="">
@@ -2437,12 +2517,10 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Silver & Rose Gold Chaandbalis/ CZ
-                                                Chaandbali/ Zirconia Earrings/
-                                                Indian Earrings/ Pakistani Earrings</a>
+                                            <a href="#" style="color: yellow;">Prom jewelry - Diamond earrings</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹850.00</span></ins>
+                                            <ins><span class="money text-white">₹250.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -2456,15 +2534,18 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="53">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="10" data-price="950">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="54" data-category="earing" 
+                                    data-name="Long Floral Earrings Female Niche Dress Earrings Temperament Ear Jewelry"
+                                    data-price="350">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/earing-14.jpg" class="img-fluid" alt="">
@@ -2478,12 +2559,11 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">SI1/H Pear Diamond Chandelier/Dangle
-                                                Wedding Earrings
-                                                14k White Gold and Pear Diamond</a>
+                                            <a href="#" style="color: yellow;">Long Floral Earrings Female Niche Dress
+                                                Earrings Temperament Ear Jewelry</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 950.00</span></ins>
+                                            <ins><span class="money text-white">₹ 350.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -2497,15 +2577,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="54">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="11" data-price="900">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="55" data-category="earing" 
+                                    data-name="Fredericksburg Earrings" data-price="500">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/earing-15.jpg" class="img-fluid" alt="">
@@ -2519,11 +2601,11 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Simulated Diamond Classic Earrings</a>
+                                            <a href="#" style="color: yellow;">Fredericksburg Earrings</a>
                                         </h4>
                                         <br><br>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 900.00</span></ins>
+                                            <ins><span class="money text-white">₹ 500.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -2537,15 +2619,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="55">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="12" data-price="650">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="56"  data-category="earing" data-name="Bridesmaid Earrings"
+                                    data-price="450">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/earing-16.jpg" class="img-fluid" alt="">
@@ -2564,7 +2648,7 @@
                                                 Bridesmaid Earrings</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 650.00</span></ins>
+                                            <ins><span class="money text-white">₹ 450.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -2578,8 +2662,9 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="56">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
@@ -2588,7 +2673,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="9" data-price="850">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="57" data-category="earing" 
+                                    data-name="Silver & Rose Gold Chaandbalis" data-price="850">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/earing-17.jpg" class="img-fluid" alt="">
@@ -2621,15 +2707,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="57">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="10" data-price="950">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="58"  data-category="earing" data-name="Wedding Earrings"
+                                    data-price="950">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/earing-18.jpg" class="img-fluid" alt="">
@@ -2662,15 +2750,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="58">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="11" data-price="900">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="59" data-category="earing" 
+                                    data-name="Simulated Diamond Classic Earrings" data-price="900">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/earing-19.jpg" class="img-fluid" alt="">
@@ -2702,15 +2792,18 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="59">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="12" data-price="650">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="60" data-category="earing" data-name="Wedding Earrings Zirconia Earrings Rose
+                                gold Earrings Bridal Earrings Wedding Jewelry
+                                Bridesmaid Earrings" data-price="650">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/earing-20.jpg" class="img-fluid" alt="">
@@ -2743,8 +2836,9 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="60">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
@@ -2755,7 +2849,9 @@
                         </div>
                         <div class="tab-pane fade" id="necklace" role="tabpanel" aria-labelledby="necklace-tab">
                             <div class="row">
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="9" data-price="850">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="61" data-category="necklace" 
+                                    data-name="Emerald Green Necklace Victorian Diamond Necklace Faux Diamond Sabyasachi Set"
+                                    data-price="1725">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/necklace-5.jpg" class="img-fluid" alt="">
@@ -2769,12 +2865,11 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Silver & Rose Gold Chaandbalis/ CZ
-                                                Chaandbali/ Zirconia Earrings/
-                                                Indian Earrings/ Pakistani Earrings</a>
+                                            <a href="#" style="color: yellow;">Emerald Green Necklace Victorian Diamond
+                                                Necklace Faux Diamond Sabyasachi Set American Diamond set</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹850.00</span></ins>
+                                            <ins><span class="money text-white">₹1725.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -2788,15 +2883,18 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="61">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="10" data-price="950">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="62" data-category="necklace" 
+                                    data-name="Premium CZ Diamond Replica Necklace and Earring Set with Green AD Stone"
+                                    data-price="3050">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/necklace-6.jpg" class="img-fluid" alt="">
@@ -2810,12 +2908,12 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">SI1/H Pear Diamond Chandelier/Dangle
-                                                Wedding Earrings
-                                                14k White Gold and Pear Diamond</a>
+                                            <a href="#" style="color: yellow;">Premium CZ Diamond Replica Necklace and
+                                                Earring Set with Green AD Stones | Bridal Dangler & Choker | Statement
+                                                special Party wear Occasion</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 950.00</span></ins>
+                                            <ins><span class="money text-white">₹ 3050.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -2829,15 +2927,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="62">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="11" data-price="900">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="63" data-category="necklace" 
+                                    data-name="Stunning Elite White Stone Necklace" data-price="1800">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/necklace-7.jpg" class="img-fluid" alt="">
@@ -2851,11 +2951,11 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Simulated Diamond Classic Earrings</a>
+                                            <a href="#" style="color: yellow;">Stunning Elite White Stone Necklace</a>
                                         </h4>
                                         <br><br>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 900.00</span></ins>
+                                            <ins><span class="money text-white">₹ 1800.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -2869,15 +2969,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="63">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="12" data-price="650">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="64" data-category="necklace" 
+                                    data-name="Best Brand Jewelry Design" data-price="1650">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/necklace-8.jpg" class="img-fluid" alt="">
@@ -2891,12 +2993,10 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Wedding Earrings Zirconia Earrings Rose
-                                                gold Earrings Bridal Earrings Wedding Jewelry
-                                                Bridesmaid Earrings</a>
+                                            <a href="#" style="color: yellow;">Best Brand Jewelry Design</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 650.00</span></ins>
+                                            <ins><span class="money text-white">₹ 1650.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -2910,8 +3010,9 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="64">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
@@ -2919,8 +3020,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="9" data-price="850">
+                            <div class="row"> 
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="65" data-category="necklace" 
+                                    data-name="New Collection Necklace Design" data-price="1550">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/necklace-9.jpg" class="img-fluid" alt="">
@@ -2934,12 +3036,10 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Silver & Rose Gold Chaandbalis/ CZ
-                                                Chaandbali/ Zirconia Earrings/
-                                                Indian Earrings/ Pakistani Earrings</a>
+                                            <a href="#" style="color: yellow;">New Collection Necklace Design</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹850.00</span></ins>
+                                            <ins><span class="money text-white">₹1550.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -2953,15 +3053,18 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="65">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="10" data-price="950">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="66" data-category="necklace" 
+                                    data-name="White House Black Market Jewelry | Gorgeous* Black House White Market * Neckless"
+                                    data-price="1450">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/necklace-10.jpg" class="img-fluid" alt="">
@@ -2975,12 +3078,11 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">SI1/H Pear Diamond Chandelier/Dangle
-                                                Wedding Earrings
-                                                14k White Gold and Pear Diamond</a>
+                                            <a href="#" style="color: yellow;">White House Black Market Jewelry |
+                                                Gorgeous* Black House White Market * Neckless</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 950.00</span></ins>
+                                            <ins><span class="money text-white">₹ 1450.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -2994,15 +3096,18 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="66">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="11" data-price="900">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="67" data-category="necklace" 
+                                    data-name="White Gold Plate Flower AAA Cubic Zircon Pendant/Earrings - Platinum Plated / White"
+                                    data-price="1900">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/necklace-11.jpg" class="img-fluid" alt="">
@@ -3016,11 +3121,12 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Simulated Diamond Classic Earrings</a>
+                                            <a href="#" style="color: yellow;">White Gold Plate Flower AAA Cubic Zircon
+                                                Pendant/Earrings - Platinum Plated / White</a>
                                         </h4>
                                         <br><br>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 900.00</span></ins>
+                                            <ins><span class="money text-white">₹ 1900.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -3034,15 +3140,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="67">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="12" data-price="650">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="68" data-category="necklace" data-name="Luxury Jewelry"
+                                    data-price="1650">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/necklace-12.jpg" class="img-fluid" alt="">
@@ -3056,12 +3164,10 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Wedding Earrings Zirconia Earrings Rose
-                                                gold Earrings Bridal Earrings Wedding Jewelry
-                                                Bridesmaid Earrings</a>
+                                            <a href="#" style="color: yellow;">Luxury Jewelry</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 650.00</span></ins>
+                                            <ins><span class="money text-white">₹ 1650.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -3075,8 +3181,9 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="68">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
@@ -3085,7 +3192,9 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="9" data-price="850">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="69" data-category="necklace" 
+                                    data-name="Wedding jewelry, Bridal jewelry, bridal accessories by GlamDuchess"
+                                    data-price="1850">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/necklace-13.jpg" class="img-fluid" alt="">
@@ -3099,12 +3208,11 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Silver & Rose Gold Chaandbalis/ CZ
-                                                Chaandbali/ Zirconia Earrings/
-                                                Indian Earrings/ Pakistani Earrings</a>
+                                            <a href="#" style="color: yellow;">Wedding jewelry, Bridal jewelry, bridal
+                                                accessories by GlamDuchess</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹850.00</span></ins>
+                                            <ins><span class="money text-white">₹ 1850.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -3118,18 +3226,21 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="69">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="10" data-price="950">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="70" data-category="necklace" data-name="jewellery set"
+                                    data-price="1950">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
-                                            <img src="Images/Product-img/necklace-14.jpg" class="img-fluid" alt="">
+                                            <img src="Images/Product-img/necklace-14.jpg" class="img-fluid"
+                                                alt="jewellery set">
                                         </a>
                                     </div>
                                     <div class="product-info">
@@ -3140,12 +3251,10 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">SI1/H Pear Diamond Chandelier/Dangle
-                                                Wedding Earrings
-                                                14k White Gold and Pear Diamond</a>
+                                            <a href="#" style="color: yellow;">jewellery set</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 950.00</span></ins>
+                                            <ins><span class="money text-white">₹ 1950.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -3159,15 +3268,18 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="70">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="11" data-price="900">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="71" data-category="necklace" 
+                                    data-name="Attractive Bridal Suit Fashion Diamond Crystal Necklaces"
+                                    data-price="1900">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/necklace-15.jpg" class="img-fluid" alt="">
@@ -3181,11 +3293,12 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Simulated Diamond Classic Earrings</a>
+                                            <a href="#" style="color: yellow;">Attractive Bridal Suit Fashion Diamond
+                                                Crystal Necklaces</a>
                                         </h4>
                                         <br><br>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 900.00</span></ins>
+                                            <ins><span class="money text-white">₹ 1900.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -3199,15 +3312,18 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="71">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="12" data-price="650">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="72" data-category="necklace" 
+                                    data-name="Rhinestone Decor Water-drop Pendant Necklace & Drop Earrings"
+                                    data-price="1650">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/necklace-16.jpg" class="img-fluid" alt="">
@@ -3221,12 +3337,11 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Wedding Earrings Zirconia Earrings Rose
-                                                gold Earrings Bridal Earrings Wedding Jewelry
-                                                Bridesmaid Earrings</a>
+                                            <a href="#" style="color: yellow;">Rhinestone Decor Water-drop Pendant
+                                                Necklace & Drop Earrings</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 650.00</span></ins>
+                                            <ins><span class="money text-white">₹ 1650.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -3240,8 +3355,9 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="72">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
@@ -3250,7 +3366,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="9" data-price="850">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="73" data-category="necklace"  data-name="Wedding Necklace"
+                                    data-price="1850">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/necklace-17.jpg" class="img-fluid" alt="">
@@ -3264,12 +3381,10 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Silver & Rose Gold Chaandbalis/ CZ
-                                                Chaandbali/ Zirconia Earrings/
-                                                Indian Earrings/ Pakistani Earrings</a>
+                                            <a href="#" style="color: yellow;">Wedding Necklace</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹850.00</span></ins>
+                                            <ins><span class="money text-white">₹1850.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -3283,15 +3398,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="73">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="10" data-price="950">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="74" data-category="necklace" data-name="SI1/H Pear Diamond Chandelier/Dangle
+                                Wedding Necklace" data-price="1950">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/necklace-18.jpg" class="img-fluid" alt="">
@@ -3306,11 +3423,11 @@
                                         </div>
                                         <h4 class="product-title">
                                             <a href="#" style="color: yellow;">SI1/H Pear Diamond Chandelier/Dangle
-                                                Wedding Earrings
-                                                14k White Gold and Pear Diamond</a>
+                                                Wedding Necklace
+                                            </a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 950.00</span></ins>
+                                            <ins><span class="money text-white">₹ 1950.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -3324,15 +3441,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="74">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="11" data-price="900">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="75" data-category="necklace" 
+                                    data-name="Simulated Diamond Classic Necklace" data-price="1900">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/necklace-19.jpg" class="img-fluid" alt="">
@@ -3346,11 +3465,11 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Simulated Diamond Classic Earrings</a>
+                                            <a href="#" style="color: yellow;">Simulated Diamond Classic Necklace</a>
                                         </h4>
                                         <br><br>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 900.00</span></ins>
+                                            <ins><span class="money text-white">₹ 1900.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -3364,15 +3483,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="75">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="12" data-price="650">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="76" data-category="necklace"  data-name="Wedding Necklace Zirconia necklace Rose
+                                Wedding Jewelry set" data-price="1650">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/necklace-20.jpg" class="img-fluid" alt="">
@@ -3386,12 +3507,11 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Wedding Earrings Zirconia Earrings Rose
-                                                gold Earrings Bridal Earrings Wedding Jewelry
-                                                Bridesmaid Earrings</a>
+                                            <a href="#" style="color: yellow;">Wedding Necklace Zirconia necklace Rose
+                                                Wedding Jewelry set</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 650.00</span></ins>
+                                            <ins><span class="money text-white">₹ 1650.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -3405,8 +3525,9 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="76">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
@@ -3415,7 +3536,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="9" data-price="850">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="77" data-category="necklace" 
+                                    data-name="Indian set of Jewelry" data-price="1850">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/necklace-17 (2).jpg" class="img-fluid" alt="">
@@ -3430,11 +3552,11 @@
                                         </div>
                                         <h4 class="product-title">
                                             <a href="#" style="color: yellow;">Silver & Rose Gold Chaandbalis/ CZ
-                                                Chaandbali/ Zirconia Earrings/
-                                                Indian Earrings/ Pakistani Earrings</a>
+                                                Chaandbali/ Zirconia jwellery set/
+                                            </a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹850.00</span></ins>
+                                            <ins><span class="money text-white">₹1850.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -3448,15 +3570,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="77">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="10" data-price="950">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="79" data-category="necklace" 
+                                    data-name="14k White Gold and Pear Diamond" data-price="1950">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/necklace-18 (2).jpg" class="img-fluid" alt="">
@@ -3471,11 +3595,10 @@
                                         </div>
                                         <h4 class="product-title">
                                             <a href="#" style="color: yellow;">SI1/H Pear Diamond Chandelier/Dangle
-                                                Wedding Earrings
                                                 14k White Gold and Pear Diamond</a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 950.00</span></ins>
+                                            <ins><span class="money text-white">₹ 1950.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -3489,15 +3612,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="78">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="11" data-price="900">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="80" data-category="necklace" data-name="Exquisite Jewelry Sets for Wedding
+                                " data-price="1900">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/necklace-19 (2).jpg" class="img-fluid" alt="">
@@ -3511,11 +3636,12 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Simulated Diamond Classic Earrings</a>
+                                            <a href="#" style="color: yellow;">Exquisite Jewelry Sets for Wedding
+                                            </a>
                                         </h4>
                                         <br><br>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 900.00</span></ins>
+                                            <ins><span class="money text-white">₹ 1900.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -3529,15 +3655,17 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="79">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-3" data-id="12" data-price="650">
+                                <div class="col-md-3 col-sm-6 mb-3 product" data-id="81" data-category="necklace" data-name="Wedding Necklace Zirconia Necklace Rose
+                                gold Necklace Bridal Necklaces Wedding Jewelry" data-price="1650">
                                     <div class="item-product">
                                         <a href="#" class="product-thumb-link">
                                             <img src="Images/Product-img/necklace-20 (2).jpg" class="img-fluid" alt="">
@@ -3551,12 +3679,12 @@
                                             </a>
                                         </div>
                                         <h4 class="product-title">
-                                            <a href="#" style="color: yellow;">Wedding Earrings Zirconia Earrings Rose
-                                                gold Earrings Bridal Earrings Wedding Jewelry
-                                                Bridesmaid Earrings</a>
+                                            <a href="#" style="color: yellow;">Wedding Necklace Zirconia Necklace Rose
+                                                gold Necklace Bridal Necklaces Wedding Jewelry
+                                            </a>
                                         </h4>
                                         <div class="product-price">
-                                            <ins><span class="money text-white">₹ 650.00</span></ins>
+                                            <ins><span class="money text-white">₹ 1650.00</span></ins>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between py-1">
                                             <div class="rating">
@@ -3570,8 +3698,9 @@
                                                     <a href="#"><button type="button"
                                                             class="btn btn-primary add-to-cart">Add
                                                             Cart</button></a>
-                                                    <a href="#"><button type="button" class="btn btn-danger"
-                                                            data-id="2">Write a Review</button></a>
+                                                    <a href="#"><button type="button"
+                                                            class="btn btn-danger write-review" data-id="80">Write a
+                                                            Review</button></a>
                                                 </div>
                                             </div>
 

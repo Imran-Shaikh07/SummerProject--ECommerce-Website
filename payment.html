@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jewelry Store Payment</title>
     <link rel="stylesheet" href="/CSS/responsive-style.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -167,29 +169,15 @@
         <img src="/Images/logo.png" alt="">
     </header>
 
-    <div class="payment-container">
+    <div class="container">
         <h2>Complete Your Purchase</h2>
-
-        <div class="form-group">
-            <label for="country">Country</label>
-            <select id="country">
-                <option value="">Select your City</option>
-                <option value="US">Mumbai</option>
-                <option value="US">Lucknow</option>
-                <option value="CA">Hyderabad</option>
-                <option value="UK">Bangalore</option>
-                <option value="AU">Indore</option>
-            </select>
-            <div class="error" id="country-error"></div>
-        </div>
-
         <div class="payment-methods">
-            <label><input type="radio" name="payment-method" value="phonepe">UPI Payment</label>
-            <label><input type="radio" name="payment-method" value="phonepe">PhonePe</label>
-            <label><input type="radio" name="payment-method" value="googlepay">Google Pay</label>
-            <label><input type="radio" name="payment-method" value="paytm">Paytm</label>
-            <label><input type="radio" name="payment-method" value="onlinepayment">Online Payment (Card)</label>
-            <label><input type="radio" name="payment-method" value="cod">Cash on Delivery</label>
+            <label><input type="radio" name="payment-method" value="phonepe" id="upi">UPI Payment</label>
+            <label><input type="radio" name="payment-method" value="phonepe" id="phonepe">PhonePe</label>
+            <label><input type="radio" name="payment-method" value="googlepay" id="googlepay">Google Pay</label>
+            <label><input type="radio" name="payment-method" value="paytm" id="paytm">Paytm</label>
+            <label><input type="radio" name="payment-method" value="onlinepayment" id="onlinepayment">Online Payment (Card)</label>
+            <label><input type="radio" name="payment-method" value="cod" id="cod">Cash on Delivery</label>
         </div>
 
         <div class="card-details">
@@ -218,14 +206,17 @@
             </div>
         </div>
 
-        <div class="summary-container">
-            <h3>Order Summary</h3>
-            <p>Subtotal: <span>₹2000</span></p>
-            <p>Shipping: <span>₹50</span></p>
-            <p>Total: <span id="total-amount">₹2050</span></p>
+        <div class="payment-summary">
+            <h4>Order Summary</h4>
+            <div id="order-items"></div>
+            <div class="order-summary">
+                <p>Subtotal: ₹<span id="subtotal">0</span></p>
+                <p>Shipping: ₹<span id="shipping">50</span></p>
+                <p class="total-price">Total: ₹<span id="total">0</span></p>
+            </div>
         </div>
 
-        <button id="pay-btn">Pay ₹2050</button>
+        <button class="btn btn-success pay-btn" id="pay-btn">Pay ₹<span id="pay-amount">0</span></button>
     </div>
 
     <footer>
@@ -234,6 +225,48 @@
     </footer>
 
     <script>
+        // Constants
+        const SHIPPING_COST = 50;
+
+         // Function to display cart items on the payment page
+         function displayOrderSummary() {
+            const orderItemsContainer = document.getElementById('order-items');
+            const subtotalElement = document.getElementById('subtotal');
+            const totalElement = document.getElementById('total');
+            const payAmountElement = document.getElementById('pay-amount');
+
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let subtotal = 0;
+
+            orderItemsContainer.innerHTML = '';
+
+            if (cart.length === 0) {
+                orderItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+            } else {
+                cart.forEach(item => {
+                    const itemRow = document.createElement('div');
+                    itemRow.classList.add('d-flex', 'justify-content-between', 'mb-2');
+                    itemRow.innerHTML = `
+                        <span>${item.name} x ${item.quantity}</span>
+                        <span>₹${item.price * item.quantity}</span>
+                    `;
+
+                    orderItemsContainer.appendChild(itemRow);
+                    subtotal += item.price * item.quantity;
+                });
+
+                // Update Subtotal and Total
+                const total = subtotal + SHIPPING_COST;
+                subtotalElement.textContent = subtotal;
+                totalElement.textContent = total;
+                payAmountElement.textContent = total;
+            }
+        }
+
+        // Call displayOrderSummary on page load
+        window.onload = displayOrderSummary;
+
+
         document.addEventListener('DOMContentLoaded', () => {
             const paymentMethods = document.querySelectorAll('input[name="payment-method"]');
             const cardDetails = document.querySelector('.card-details');
@@ -298,6 +331,8 @@
                 }
 
                 if (isValid) {
+                    alert('Payment successful! Your order is placed.');
+                    localStorage.removeItem('cart');
                     window.open('successful.html');
                 }
             });

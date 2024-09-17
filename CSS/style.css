@@ -412,3 +412,36 @@ p {
     margin-top: 30px;
     margin-left: 70px;
 }
+/* 
+=======================
+        Review
+=======================
+*/
+
+.review-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+.review-popup.active {
+    display: block;
+}
+.review-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+.review-overlay.active {
+    display: block;
+}
