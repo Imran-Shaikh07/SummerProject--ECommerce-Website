@@ -10,7 +10,7 @@
 
   Jwellary is fully responsive ecommerce website, <br />Responsive for all devices, built using HTML, CSS, and JavaScript.
 
-  <a href="https://imran-shaikh07.github.io/SummerProject--ECommerce-Website/"><strong>➥ Live Demo</strong></a>
+  <a href="https://master--jade-concha-b877b7.netlify.app/"><strong>➥ Live Demo</strong></a>
 
 </div>
 
